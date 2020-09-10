@@ -8,6 +8,9 @@ const productSchema = new Schema({
         price:Number,
         img:String,
         type:Number,
+        store:String,
+        address:String
+        
 });
 //发布模型
 mongoose.model('Product',productSchema);

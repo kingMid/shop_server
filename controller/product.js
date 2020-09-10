@@ -28,16 +28,23 @@ router.get('/insertProductInfo',async (ctx)=>{
 });
 
 
-
+//通过类型id获取分类商品信息
 router.get('/getProductsByType',async (ctx)=>{
 
     //获取model
     const Product = mongoose.model('Product');
     await Product.find({type:ctx.query.type}).skip(parseInt(ctx.query.start)).limit(parseInt(ctx.query.limit)).exec().then(res=>{
         ctx.body = res;
-    })
-   
-     
+    })   
  });
+
+ //通过id获取商品详细信息
+
+router.get('/getDetail',async(ctx)=>{
+    const Product = mongoose.model('Product');
+    await Product.findOne({_id:ctx.query.id}).exec().then(res=>{
+        ctx.body = res;
+    })
+})
 
 module.exports =  router;
